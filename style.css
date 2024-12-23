@@ -1,0 +1,513 @@
+/* General Styling */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+/* Card Container */
+.card-container {
+    position: relative;
+    width: 90%;
+    max-width: 400px; /* Adjusted to be narrower for vertical alignment */
+}
+
+/* Card */
+.card {
+    position: relative;
+    width: 100%;
+    height: 500px; /* Taller for a Vertical appearance */
+    border-radius: 12px;
+    overflow: hidden;
+    background-color: white;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); 
+}
+
+    /* Default card styles */
+    #card {
+        border: 5px solid transparent; /* Start with no visible border */
+        border-radius: 15px; /* Ensure smooth corners */
+        transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+      }
+      
+      /* Glow effects for User1 and User2 */
+      .user2-glow {
+        border-color: #00ff00; /* Green border for User 1 */
+        box-shadow: 0 0 45px #00ff00; /* Green glow */
+      }
+      
+      .user1-glow {
+        border-color: #0000ff; /* Blue border for User 2 */
+        box-shadow: 0 0 45px #0000ff; /* Blue glow */
+      }
+
+/* Swipe Animations */
+@keyframes swipe-up {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(-100%);
+        opacity: 0;
+    }
+}
+
+@keyframes swipe-down {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100%);
+        opacity: 0;
+    }
+}
+
+.swipe-up {
+    animation: swipe-up 0.3s ease-in-out forwards;
+}
+
+.swipe-down {
+    animation: swipe-down 0.3s ease-in-out forwards;
+}
+
+/* Image */
+.card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Fill the entire card */
+    object-fit: cover;
+    z-index: 1;
+}
+
+/* Fade Effect */
+.image-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 90%; /* Bottom % of the card */
+    background: linear-gradient(to bottom, 
+        rgba(0, 0, 0, 0.0) 40%, /* Start fully transparent */
+        rgba(0, 0, 0, 0.4) 55%, /* Introduce a slight fade */
+        rgba(0, 0, 0, 0.9) 75%, /* Get close to black here */
+        black 100% /* Fully opaque at the bottom */
+    );
+    z-index: 2;
+    padding: 16px;
+    box-sizing: border-box;
+    color: black;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+/* Title, Description, and Location */
+.title {
+    font-family: "Kalam", cursive;
+    font-size: 30px;
+    color: white;
+    font-weight: 700;
+    font-style: normal;
+    margin: 0 0 -10px;
+}
+
+.description {
+    font-family: "Kalam", cursive;
+    font-size: 24px;
+    color: white;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0px 0 -5px;
+}
+
+.location {
+    font-family: "Kalam", cursive;
+    font-size: 20px;
+    color: white;
+    font-weight: 300;
+    font-style: normal;
+    margin: 0px 0 0;
+}
+
+/* Buttons */
+.buttons {
+    position: absolute;
+    bottom: 16px; /* Keep the buttons aligned with the bottom of the card */
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between; /* Push buttons to the edges */
+    padding: 0 16px; /* Add space from the edges */
+    z-index: 3;
+}
+
+.button {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    position: relative;
+    animation: pop 0.2s ease-in-out;
+}
+
+.like {
+    background-color: #b8e986; /* Pastel Green */
+    border: 2px solid darkgreen;
+    transform: translateX(-32px); /* Adjust the value to move it left */
+    animation: pop 0.2s ease-in-out;
+}
+
+/* Like Button Hover Effect */
+.like:hover {
+    background-color: #d4f4c4; /* Lighter green on hover */
+    transform: translateX(-32px) scale(1.1); /* Maintain translation and add scaling */
+    box-shadow: 0 3px 6px rgba(0, 128, 0, 0.3); /* Add shadow for depth */
+}
+
+/* Press Down Animation for Like Button */
+.like:active {
+    transform: translateX(-32px) scale(0.9); /* Combine translation and shrink */
+    box-shadow: 0 2px 4px rgba(0, 128, 0, 0.2); /* Reduce shadow intensity */
+}
+
+.dislike {
+    background-color: #f5a6a6; /* Pastel Red */
+    border: 2px solid darkred;
+    animation: pop 0.2s ease-in-out;
+}
+
+/* Dislike Button Hover Effect */
+.dislike:hover {
+    background-color: #f7cccc; /* Lighter red on hover */
+    transform: scale(1.1); /* Slightly enlarge */
+    box-shadow: 0 3px 6px rgba(255, 0, 0, 0.3); /* Add shadow for depth */
+}
+
+/* Press Down Animation for Dislike Button */
+.dislike:active {
+    transform: scale(0.9); /* Shrink slightly */
+    box-shadow: 0 2px 4px rgba(255, 0, 0, 0.2); /* Reduce shadow intensity */
+}
+
+/* Add Checkmark and X */
+.like::before {
+    content: "✔";
+    color: darkgreen; /* Dark green checkmark */
+    font-size: 24px;
+}
+
+.dislike::before {
+    content: "✖";
+    color: darkred; /* Dark red X */
+    font-size: 24px;
+}
+
+/* Pop Animation */
+@keyframes pop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+.like:active,
+.dislike:active {
+    animation: pop 0.2s ease-in-out;
+}
+
+/* Profile container to position elements */
+#profile-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 100;
+  }
+  
+  /* Circular profile picture */
+  #profile-picture {
+    width: 50px; /* Adjust size */
+    height: 50px;
+    border-radius: 50%;
+    background-size: cover;
+    background-position: center;
+    border: 2px solid #ccc;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: border-color 0.2s;
+    z-index: 1000;
+  }
+
+  /* Profile Picture Hover Effect */
+#profile-picture:hover {
+    border-color: #66afe9; /* Light blue border on hover */
+    box-shadow: 0 0 10px rgba(102, 175, 233, 0.8); /* Subtle glow */
+    cursor: pointer;
+}
+
+/* Press Down Animation for Profile Picture */
+#profile-picture:active {
+    transform: scale(0.95); /* Slightly shrink */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Reduce shadow */
+}
+
+  /* Hidden by default */
+.hidden {
+    display: none;
+}
+
+/* Dropdown menu styling */
+#dropdown-menu {
+    position: absolute;
+    top: 50px; /* Below the profile picture */
+    left: 10px;
+    background-color: #333;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    z-index: 1001;
+}
+
+/* Dropdown items */
+.dropdown-item {
+    padding: 8px 12px;
+    font-family: Arial;
+    font-size: 14px;
+    cursor: pointer;
+    color: white;
+    transition: background-color 0.2s;
+}
+
+.dropdown-item:hover {
+    background-color: #e6f7ff6e;
+}
+
+.dropdown-item:active {
+    transform: scale(0.95); /* Slightly shrink */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2); /* Reduce shadow */
+}
+
+/* Match screen container */
+.match-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+  
+  /* Background of the match card */
+  .match-background {
+    position: relative;
+    width: 90%;
+    max-width: 400px;
+    aspect-ratio: 4 / 5; /* Maintain the card proportions */
+    border-radius: 15px;
+    overflow: hidden;
+    background-color: #fff;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  
+  /* Full card image */
+  .match-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  /* Fade effect at the bottom */
+  .match-fade {
+    position: absolute;
+    bottom: 0%;
+    width: 100%;
+    height: 20%;
+    background: linear-gradient(to bottom, transparent, rgba(0, 0, 0, 0.8));
+  }
+  
+  /* Match text in the center */
+  .match-text {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 5rem;
+    font-weight: bold;
+    font-style: italic;
+    color: #32cd32;
+    text-shadow: 
+        -1px -1px 0 rgba(0, 0, 0, 1), /* Top-left */
+        1px -1px 0 rgba(0, 0, 0, 1), /* Top-right */
+        -1px  1px 0 rgba(0, 0, 0, 1), /* Bottom-left */
+        1px  1px 0 rgba(0, 0, 0, 1); /* Bottom-right */
+    text-align: center;
+    z-index: 2;
+  }
+
+  /* Match details */
+.match-details {
+    position: absolute;
+    bottom: 5%;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    z-index: 1;
+  }
+  
+  .match-restaurant-name {
+    font-family: 'Kalam', cursive;
+    font-size: 30px;
+    font-weight: 700;
+    font-style: normal;
+    margin: 0 0 -10px;
+  }
+  
+  .match-restaurant-description {
+    font-family: 'Kalam', cursive;
+    font-size: 24px;
+    font-weight: 400;
+    font-style: normal;
+    margin: 0px 0 -5px;
+  }
+  
+  .match-restaurant-location {
+    font-family: 'Kalam', cursive;
+    font-size: 20px;
+    font-weight: 300;
+    font-style: normal;
+    margin: 0px 0 0;
+  }
+  
+  /* Confetti animation */
+  .confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  /* Keyframes for animations */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  @keyframes popIn {
+    from { transform: translate(-50%, -50%) scale(0.8) rotate(-10deg); }
+    to { transform: translate(-50%, -50%) scale(1) rotate(-10deg); }
+  }
+  
+  @keyframes confetti {
+    0% { transform: translateY(-10px) rotate(0); opacity: 1; }
+    100% { transform: translateY(100vh) rotate(360deg); opacity: 0; }
+  }
+  
+  .confetti {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #32cd32;
+    border-radius: 50%;
+    animation: confetti 3s ease-in-out infinite;
+  }  
+
+#filter-container {
+    position: relative;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  
+  #category-filter {
+    padding: 8px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+/* Position the filter button in the top-right corner */
+#filter-container {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 100;
+  }
+  
+  /* Style the filter button as a circle */
+  .circle-button {
+    width: 55px;
+    height: 55px;
+    border: none;
+    border-radius: 50%;
+    position: absolute;
+    top: 0px; /* Adjust as needed */
+    right: -10px; /* Move slightly to the right */
+    background-color: #ffffff; /* White background */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .circle-button:hover {
+    transform: scale(1.1); /* Slightly enlarge on hover */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3); /* Stronger shadow */
+  }
+  
+  /* Filter icon inside the button */
+  #filter-icon {
+    width: 60%;
+    height: 60%;
+    object-fit: contain; /* Ensure the icon fits within the circle */
+  }
+
+  /* Adjust icon size inside the circle */
+  #filter-button i {
+    font-size: 1.8em; /* Increase icon size */
+    color: #000000; /* Icon color (adjust if needed) */
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+  #category-filter {
+    position: absolute;
+    top: 60px; /* Adjust to appear below the button */
+    right: 10px; /* Align with the button */
+    z-index: 100;
+    background-color: white;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+  }

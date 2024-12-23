@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Restaurant Picker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+  <div class="card-container">
+    <!-- Card -->
+    <div id="card" class="card">
+      <!-- Image -->
+      <img id="restaurant-image" class="card-image" src="" alt="Restaurant Image">
+
+      <!-- Fade Effect and Overlay -->
+      <div class="image-overlay">
+        <h2 id="restaurant-name" class="title">Restaurant Name</h2>
+        <p id="restaurant-description" class="description">Description</p>
+        <p id="restaurant-location" class="location">Location</p>
+      </div>
+
+      <!-- Buttons on the card -->
+      <div class="buttons">
+        <button id="dislike-button" class="button dislike"></button>
+        <button id="like-button" class="button like"></button>
+      </div>
+    </div>
+
+    <div id="profile-container">
+      <div id="profile-picture"></div>
+      <div id="dropdown-menu" class="hidden">
+        <div class="dropdown-item" data-user="User1" data-name="Bella">Bella</div>
+        <div class="dropdown-item" data-user="User2" data-name="Chase">Chase</div>
+      </div>
+    </div>
+
+    <div id="match-screen" class="hidden match-screen">
+      <div class="match-background">
+        <img id="match-restaurant-image" alt="Matched Restaurant" class="match-image">
+        <div class="match-fade"></div>
+        <h1 class="match-text">MATCH</h1>
+        <div class="confetti-container"></div>
+        <div class="match-details">
+          <h2 id="match-restaurant-name" class="match-restaurant-name"></h2>
+          <p id="match-restaurant-description" class="match-restaurant-description"></p>
+          <p id="match-restaurant-location" class="match-restaurant-location"></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="filter-container">
+      <button id="filter-button" class="circle-button">
+        <i class="fas fa-utensils"></i> <!-- Default icon -->
+      </button>
+      <select id="category-filter" class="hidden">
+        <option value="all">All</option>
+        <option value="Fast Food">Fast Food</option>
+        <option value="Sit-Down">Sit-Down</option>
+        <option value="Breakfast">Breakfast</option>
+        <option value="Dessert">Dessert</option>
+      </select>
+    </div>
+  </div>
+    
+  <script src="script.js"></script>
+</body>
+</html>
